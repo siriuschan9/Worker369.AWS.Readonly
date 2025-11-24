@@ -1,0 +1,20 @@
+# Ignore build artifacts
+bin/
+obj/
+data/
+
+# Ignore test project
+test/
+xunit/
+pester/
+
+# Ignore VSCode files
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Ignore misc files
+_install.ps1
+_import.ps1
+_test.ps1
