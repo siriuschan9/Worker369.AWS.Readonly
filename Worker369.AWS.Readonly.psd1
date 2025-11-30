@@ -133,8 +133,8 @@ FunctionsToExport = @(
     # Security Group Rule
     'Show-SecurityGroupRule',
 
-    # Lambda
-    'Show-Lambda',
+    # AWS Organization
+    'Show-OrgTree'
 
     # CloudFormation
     'Show-Stack', 'Show-StackInstance',
@@ -143,8 +143,11 @@ FunctionsToExport = @(
     # Identity Center
     'Show-SsoAssignment', 'Show-SsoUserPermission',
 
-    # AWS Organization
-    'Show-OrgTree'
+    # Lambda
+    'Show-Lambda',
+
+    # S3
+    'Show-S3Folder', 'Show-S3FileContent'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry,
