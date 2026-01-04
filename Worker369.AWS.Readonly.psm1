@@ -72,7 +72,10 @@ Export-ModuleMember -Alias @(
     'func_show',
 
     # S3
-    's3_ls', 's3_cat'
+    's3_ls', 's3_cat',
+
+    # EC2
+    'ec2_console'
 )
 
 # Variables

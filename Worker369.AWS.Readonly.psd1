@@ -147,7 +147,10 @@ FunctionsToExport = @(
     'Show-Lambda',
 
     # S3
-    'Show-S3Folder', 'Show-S3FileContent'
+    'Show-S3Folder', 'Show-S3FileContent',
+
+    # EC2
+    'Get-EC2SystemLog'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry,
