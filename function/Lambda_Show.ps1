@@ -239,10 +239,43 @@ function Show-Lambda
 
         $_tags_lookup = @{}
 
+        try{
+            foreach ($_function in $_lambda_list)
+            {
+                $_tags_lookup[$_function.FunctionArn] = Get-LMResourceTag -Verbose:$false $_function.FunctionArn
+            }
+        }
+        catch {
+            # Remove caught exception emitted into $Error list.
+            Pop-ErrorRecord $_
+
+            # Re-throw caught exception.
+            $PSCmdlet.ThrowTerminatingError($_)
+        }
+    }
+
+    if ($_view -in @('Version'))
+    {
+        Write-Verbose 'Retrieving versions'
+
+        $_versions_lookup = @{}
+
         foreach ($_function in $_lambda_list)
         {
-            Write-Verbose 'Retrieving resource tags.'
-            $_tags_lookup[$_function.FunctionArn] = Get-LMResourceTag -Verbose:$false $_function.FunctionArn
+            try{
+                foreach ($_function in $_lambda_list)
+                {
+                    $_versions_lookup[$_function.FunctionArn] = `
+                        Get-LMVersionsByFunction -Verbose:$false $_function.FunctionArn
+                }
+            }
+            catch {
+                # Remove caught exception emitted into $Error list.
+                Pop-ErrorRecord $_
+
+                # Re-throw caught exception.
+                $PSCmdlet.ThrowTerminatingError($_)
+            }
         }
     }
 
@@ -255,14 +288,18 @@ function Show-Lambda
         -Sort             $_sort `
         -Exclude          $_exclude
 
-    # Print out the summary table.
-    $_lambda_list                |
-    Select-Object $_select_list  |
-    Sort-Object   $_sort_list    |
-    Select-Object $_project_list |
-    Where-Object  $_where        |
-    Format-Column `
-        -GroupBy $_group_by `
-        -PlainText:$_plain_text `
-        -NoRowSeparator:$_no_row_separator
+    # Generate output after sorting and exclusion.
+    $_output = $_lambda_list `
+        | Select-Object $_select_list `
+        | Sort-Object $_sort_list `
+        | Select-Object $_project_list `
+        | Where-Object $_where
+
+    # Print out the output.
+    if ($global:EnableHtmlOutput) {
+        $_output | Format-Html -GroupBy $_group_by | Remove-PSStyle
+    }
+    else {
+        $_output | Format-Column -GroupBy $_group_by -PlainText:$_plain_text -NoRowSeparator:$_no_row_separator
+    }
 }

@@ -134,10 +134,10 @@ FunctionsToExport = @(
     'Show-SecurityGroupRule',
 
     # AWS Organization
-    'Show-OrgTree'
+    'Show-OrgTree',
 
     # CloudFormation
-    'Show-Stack', 'Show-StackInstance',
+    'Show-Stack', 'Show-StackInstance', 'Show-StackResource',
     'Show-IacScanBrief', 'Show-IacScanDetail',
 
     # Identity Center

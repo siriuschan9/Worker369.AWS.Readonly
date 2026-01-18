@@ -17,7 +17,7 @@ Get-Item $autocomplete_files | ForEach-Object {. $_.FullName}
 Export-ModuleMember -Alias @(
 
     # Prefix List,
-    'pl_resolve', 'pl_read'
+    'pl_resolve', 'pl_read',
 
     # VPC BPA Exclusion
     'vpc_bpa_excl_show',
@@ -59,10 +59,10 @@ Export-ModuleMember -Alias @(
     'sgr_show',
 
     # AWS Organization
-    'org_tree'
+    'org_tree',
 
     # CloudFormation
-    'stack_show', 'stackinstance_show',
+    'stack_show', 'stack_instance_show', 'stack_resource_show',
     'iac_scan_brief', 'iac_scan_detail',
 
     # Identity Center
