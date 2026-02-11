@@ -42,10 +42,26 @@ class RootNode
         Write-Host $_dashes
 
         Write-Message -Progress "Traversing Organization Tree" "Retrieving OU for Root."
-        Get-ORGOrganizationalUnitList -Verbose:$false $_root_id | Sort-Object Name |ForEach-Object {
+
+        Get-ORGOrganizationalUnitList -Verbose:$false $_root_id | Sort-Object Name | ForEach-Object {
             $_ou_node = [OuNode]::new($_)
             $_ou_node.Walk('  ')
         }
+
+        Get-ORGAccountForParent -Verbose:$false $_root_id | Sort-object Name | ForEach-Object {
+            $_account_id    = $_.Id.Insert(4, '-').Insert(9, '-')
+            $_account_name  = $_.Name
+
+            $_display = '-' * 80
+            $_left    = "  ◆ $_account_name $_dim"
+            $_right   = "   $_account_id $_reset"
+
+            $_display = $_display.Remove(0, $_left.Length).Insert(0, $_left)
+            $_display = $_display + $_right
+
+            Write-Host $_display
+        }
+
         Write-Message -Progress "Traversing Organization Tree" "Completed." -Complete
     }
 }
