@@ -238,8 +238,8 @@ function Show-SecurityGroup
     }
 
     # Dictionaries for VPC, Prefix List and ENI lookup - by Security Group ID.
-    $_vpc_lookup               = [Dictionary[string, Vpc]]::new()
-    $_pl_lookup                = [Dictionary[string, ManagedPrefixList]]::new()
+    $_vpc_lookup = [Dictionary[string, Vpc]]::new()
+    $_pl_lookup  = [Dictionary[string, ManagedPrefixList]]::new()
 
     # Dictionaries to lookup quota statistics by Security Group ID.
     $_inbound_ipv4_lookup  = [Dictionary[string, int]]::new()

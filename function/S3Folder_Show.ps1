@@ -164,7 +164,7 @@ function Show-S3Folder
         -not $PSBoundParameters.Keys.Contains('Exclude') -and
         -not $PSBoundParameters.Keys.Contains('Sort')
     ) {
-        $_sort = @(1, 5)      # Sort by Type, Name
+        $_sort = @(1, 5) # Sort by Type, Name
     }
 
     # Grab the list of property names to print out.

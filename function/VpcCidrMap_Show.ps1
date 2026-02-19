@@ -28,7 +28,7 @@ function Show-VpcCidrMap
 
     BEGIN
     {
-        # For easy Pickup
+        # For easy pickup.
         $_param_set = $PSCmdlet.ParameterSetName
         $_dim       = [System.Management.Automation.PSStyle]::Instance.Dim
         $_reset     = [System.Management.Automation.PSStyle]::Instance.Reset

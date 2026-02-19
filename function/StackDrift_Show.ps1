@@ -42,10 +42,10 @@ function Show-StackDrift
             $_.DifferenceType
         }
         ExpectedValue = {
-            ($_.ExpectedValue | Out-Json) -split "`n"
+            ($_.ExpectedValue | Format-Json) -split "`n"
         }
         ActualValue = {
-            ($_.ActualValue | Out-Json) -split "`n"
+            ($_.ActualValue | Format-Json) -split "`n"
         }
     }
 

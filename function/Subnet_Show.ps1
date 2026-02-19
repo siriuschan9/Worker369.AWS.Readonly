@@ -8,7 +8,7 @@ function Show-Subnet
     [CmdletBinding(DefaultParameterSetName = 'None')]
     param(
         [parameter(Position = 0)]
-        [validateSet('Default', 'Attributes', 'NetworkAcl', 'RouteTable')]
+        [ValidateSet('Default', 'Attributes', 'NetworkAcl', 'RouteTable')]
         [string]
         $View = 'Default',
 

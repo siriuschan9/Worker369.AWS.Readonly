@@ -140,6 +140,9 @@ FunctionsToExport = @(
     'Show-Stack', 'Show-StackDrift', 'Show-StackInstance', 'Show-StackResource',
     'Show-IacScanBrief', 'Show-IacScanDetail',
 
+    # IAM,
+    'Show-IamRoleTrustPolicy',
+
     # Identity Center
     'Show-SsoAssignment', 'Show-SsoUserPermission',
 
@@ -147,7 +150,8 @@ FunctionsToExport = @(
     'Show-Lambda',
 
     # S3
-    'Show-S3Folder', 'Show-S3FileContent',
+    'Show-S3Folder', 'Show-S3FileContent', 'Show-S3FileVersion',
+    'Show-S3Bucket', 'Show-S3Policy',
 
     # EC2
     'Get-EC2SystemLog'

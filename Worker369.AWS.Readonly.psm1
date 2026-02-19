@@ -65,6 +65,9 @@ Export-ModuleMember -Alias @(
     'stack_show', 'stack_drift_show', 'stack_instance_show', 'stack_resource_show',
     'iac_scan_brief', 'iac_scan_detail',
 
+    # IAM,
+    'role_trust_show',
+
     # Identity Center
     'sso_assign_show', 'sso_uperm_show',
 
@@ -72,7 +75,8 @@ Export-ModuleMember -Alias @(
     'func_show',
 
     # S3
-    's3_ls', 's3_cat',
+    's3_ls', 's3_cat', 's3_ver',
+    's3_show', 's3_policy_show',
 
     # EC2
     'ec2_console'
