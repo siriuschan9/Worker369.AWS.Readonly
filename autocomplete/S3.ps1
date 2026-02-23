@@ -2,6 +2,7 @@ $_cmd_lookup = @{
     BucketName = @(
         'Show-S3Bucket', 'Show-S3Policy',
         'Show-S3Folder', 'Show-S3FileContent', 'Show-S3FileVersion',
+        'Get-S3File',
         'Enable-S3BucketVersioning', 'Disable-S3BucketVersioning',
         'Enable-S3BucketKey', 'Disable-S3BucketKey',
         'Set-S3Encryption',
@@ -11,7 +12,7 @@ $_cmd_lookup = @{
         'Show-S3Folder', 'Show-S3FileVersion'
     )
     Key = @(
-        'Show-S3FileContent', 'Remove-S3File'
+        'Show-S3FileContent', 'Get-S3File'
     )
     KmsKeyArn = @(
         'Set-S3Encryption'
