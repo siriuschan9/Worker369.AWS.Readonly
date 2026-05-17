@@ -66,7 +66,8 @@ Export-ModuleMember -Alias @(
     'iac_scan_brief', 'iac_scan_detail',
 
     # IAM,
-    'role_trust_show',
+    'iam_role_show', 'iam_role_trust_show',
+    'iam_policy_find', 'iam_policy_doc_read',
 
     # Identity Center
     'sso_assign_show', 'sso_uperm_show',
@@ -77,6 +78,7 @@ Export-ModuleMember -Alias @(
     # S3
     's3_ls', 's3_cat', 's3_ver',
     's3_show', 's3_policy_show',
+    's3_get',
 
     # EC2
     'ec2_console'

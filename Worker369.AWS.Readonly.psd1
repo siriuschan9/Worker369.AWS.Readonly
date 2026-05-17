@@ -141,7 +141,8 @@ FunctionsToExport = @(
     'Show-IacScanBrief', 'Show-IacScanDetail',
 
     # IAM,
-    'Show-IamRoleTrustPolicy',
+    'Show-IamRole', 'Show-IamRoleTrustPolicy',
+    'Find-IamPolicy', 'Read-IamPolicyDocument',
 
     # Identity Center
     'Show-SsoAssignment', 'Show-SsoUserPermission',
