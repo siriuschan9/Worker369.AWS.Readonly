@@ -37,6 +37,9 @@ Export-ModuleMember -Alias @(
     # Subnet
     'subnet_show',
 
+    # ENI,
+    'eni_show',
+
     # Route Table
     'rt_show',
 
@@ -67,13 +70,16 @@ Export-ModuleMember -Alias @(
 
     # IAM,
     'iam_role_show', 'iam_role_trust_show',
-    'iam_policy_find', 'iam_policy_doc_read',
+    'iam_policy_find', 'iam_policy_doc_read', 'iam_policy_cat',
 
     # Identity Center
     'sso_assign_show', 'sso_uperm_show',
 
     # Lambda
     'func_show',
+
+    # KMS
+    'kms_show',
 
     # S3
     's3_ls', 's3_cat', 's3_ver',

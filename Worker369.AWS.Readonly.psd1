@@ -112,6 +112,9 @@ FunctionsToExport = @(
     # Subnet
     'Show-Subnet',
 
+    # ENI
+    'Show-Eni',
+
     # Route Table
     'Show-RouteTable',
 
@@ -120,6 +123,9 @@ FunctionsToExport = @(
 
     # Route Entry
     'Show-Route',
+
+    # Route 53
+    'Show-Route53Dns',
 
     # Network ACL
     'Show-NetworkAcl',
@@ -142,13 +148,16 @@ FunctionsToExport = @(
 
     # IAM,
     'Show-IamRole', 'Show-IamRoleTrustPolicy',
-    'Find-IamPolicy', 'Read-IamPolicyDocument',
+    'Find-IamPolicy', 'Read-IamPolicyDocument',' Show-IamPolicyContent',
 
     # Identity Center
     'Show-SsoAssignment', 'Show-SsoUserPermission',
 
     # Lambda
     'Show-Lambda',
+
+    # KMS,
+    'Show-KmsKey',
 
     # S3
     'Show-S3Folder', 'Show-S3FileContent', 'Show-S3FileVersion',

@@ -1,15 +1,14 @@
 $_cmd_lookup = @{
-
-    PolicyArn = @(
-        'Show-IamPolicyContent'
+    SnsAction = @(
+        'New-EC2CpuAlarm', 'New-EC2StatusAlarm'
     )
-    RoleName = @(
-        'Show-IamRoleTrustPolicy'
+    LambdaAction = @(
+        'New-EC2CpuAlarm', 'New-EC2StatusAlarm'
     )
 }
 
-# PolicyArn
-Register-ArgumentCompleter -ParameterName 'PolicyArn' -CommandName $_cmd_lookup['PolicyArn'] -ScriptBlock {
+# SnsAction
+Register-ArgumentCompleter -ParameterName 'SnsAction' -CommandName $_cmd_lookup['SnsAction'] -ScriptBlock {
 
     param(
         $_command_name,
@@ -19,9 +18,8 @@ Register-ArgumentCompleter -ParameterName 'PolicyArn' -CommandName $_cmd_lookup[
         $_fake_bound_parameters
     )
 
-    $_arn_list = $global:IamPolicyCache_Local + $global:IamPolicyCache_AWS
-    $_arn_list | Where-Object { $_ -like "$_word_to_complete*" } |
-    Sort-Object | ForEach-Object {
+    Get-SNSTopic -Verbose:$false | Select-Object -ExpandProperty TopicArn |
+    Where-Object { $_ -like "$($_word_to_complete)*"} | ForEach-Object {
 
         [System.Management.Automation.CompletionResult]::new(
             $_,               # completionText
@@ -32,8 +30,8 @@ Register-ArgumentCompleter -ParameterName 'PolicyArn' -CommandName $_cmd_lookup[
     }
 }
 
-# RoleName
-Register-ArgumentCompleter -ParameterName 'RoleName' -CommandName $_cmd_lookup['RoleName'] -ScriptBlock {
+# LamdaAction
+Register-ArgumentCompleter -ParameterName 'LambdaAction' -CommandName $_cmd_lookup['LambdaAction'] -ScriptBlock {
 
     param(
         $_command_name,
@@ -43,8 +41,8 @@ Register-ArgumentCompleter -ParameterName 'RoleName' -CommandName $_cmd_lookup['
         $_fake_bound_parameters
     )
 
-    Get-IAMRoleList -Verbose:$false -Select Roles.RoleName | Where-Object {$_ -like "$_word_to_complete*" } |
-    Sort-Object | ForEach-Object {
+    Get-LMFunctionList -Verbose:$false | Select-Object -ExpandProperty FunctionArn |
+    Where-Object { $_ -like "$($_word_to_complete)*"} | ForEach-Object {
 
         [System.Management.Automation.CompletionResult]::new(
             $_,               # completionText

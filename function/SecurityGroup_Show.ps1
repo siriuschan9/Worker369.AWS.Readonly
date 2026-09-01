@@ -104,7 +104,7 @@ function Show-SecurityGroup
         }
         InboundRules = {
             $_num_inbound_rules = $_.IpPermissions.Count
-            $_num_style         = $_plain_text ? $_counter_style : $_counter_plain
+            $_num_style         = $_plain_text ? $_counter_plain : $_counter_style
 
             New-NumberInfo -FormatSettings $_num_style $_num_inbound_rules
         }
@@ -122,7 +122,7 @@ function Show-SecurityGroup
         }
         OutboundRules = {
             $_num_outbound_rules = $_outbound_rules_lookup[$_.GroupId]
-            $_num_style          = $_plain_text ? $_counter_style : $_counter_plain
+            $_num_style          = $_plain_text ? $_counter_plain : $_counter_style
 
             New-NumberInfo -FormatSettings $_num_style $_num_outbound_rules
         }
@@ -179,7 +179,7 @@ function Show-SecurityGroup
         # Query VPCs.
         $_vpc_list = Get-EC2Vpc -Verbose:$false -Filter @{ Name = 'vpc-id'; Values = $_sg_list.VpcId }
 
-        # Query AWS Region.
+        # Query AWS Region - Needed for AWS Managed Prefix lists - i.e. com.amazonaws.$_region.s3
         $_region = (Get-DefaultAWSRegion -Verbose:$false).Region
 
         # Query Prefix Lists.
@@ -251,7 +251,7 @@ function Show-SecurityGroup
     $_inbound_rules_lookup  = [Dictionary[string, int]]::new()
     $_outbound_rules_lookup = [Dictionary[string, int]]::new()
 
-    # PUt VPC in Dictionary
+    # Put VPC in Dictionary
     foreach ($_vpc in $_vpc_list)
     {
         $_vpc_lookup[$_vpc.VpcId] = $_vpc
