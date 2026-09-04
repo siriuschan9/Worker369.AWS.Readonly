@@ -59,6 +59,7 @@ RequiredModules = @(
     'AWS.Tools.SecurityToken',
     'AWS.Tools.IdentityManagement',
     'AWS.Tools.EC2',
+    'AWS.Tools.KeyManagementService',
     'AWS.Tools.CloudFormation',
     'AWS.Tools.IdentityStore',
     'AWS.Tools.Lambda',
