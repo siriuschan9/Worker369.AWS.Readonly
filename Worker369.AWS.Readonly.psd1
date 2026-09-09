@@ -162,7 +162,7 @@ FunctionsToExport = @(
 
     # S3
     'Show-S3Folder', 'Show-S3FileContent', 'Show-S3FileVersion',
-    'Show-S3Bucket', 'Show-S3Policy',
+    'Show-S3Bucket', 'Show-S3Policy', 'Get-S3File'
 
     # EC2
     'Get-EC2SystemLog'
