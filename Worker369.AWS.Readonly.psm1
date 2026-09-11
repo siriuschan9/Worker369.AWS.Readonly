@@ -37,9 +37,12 @@ Export-ModuleMember -Alias @(
     # Subnet
     'subnet_show',
 
-    # ENI,
+    # ENI
     'eni_show',
 
+    # EC2
+    'ec2_show', 'ec2_console'
+    
     # Route Table
     'rt_show',
 
@@ -48,6 +51,12 @@ Export-ModuleMember -Alias @(
 
     # Route Entry
     'route_show',
+
+    # Transit Gateway
+    'tgw_rt_show', 'tgw_route_show',
+
+    # Route 53
+    'dns_show',
 
     # Network ACL
     'nacl_show',
@@ -86,8 +95,8 @@ Export-ModuleMember -Alias @(
     's3_show', 's3_policy_show',
     's3_get',
 
-    # EC2
-    'ec2_console'
+    # SSM
+    'fleet_show'
 )
 
 # Variables
