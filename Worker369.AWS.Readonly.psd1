@@ -64,7 +64,8 @@ RequiredModules = @(
     'AWS.Tools.IdentityStore',
     'AWS.Tools.Lambda',
     'AWS.Tools.SSOAdmin',
-    'AWS.Tools.Organizations'
+    'AWS.Tools.Organizations',
+    'AWS.Tools.SimpleSystemsManagement'
 )
 
 # Assemblies that must be loaded prior to importing this module
@@ -116,6 +117,9 @@ FunctionsToExport = @(
     # ENI
     'Show-Eni',
 
+    # EC2
+    'Show-Ec2', 'Get-EC2SystemLog'
+    
     # Route Table
     'Show-RouteTable',
 
@@ -124,6 +128,9 @@ FunctionsToExport = @(
 
     # Route Entry
     'Show-Route',
+
+    # Transit Gateway
+    'Show-TransitGatewayRouteTable', 'Show-TransitGatewayRoute',
 
     # Route 53
     'Show-Route53Dns',
@@ -162,10 +169,10 @@ FunctionsToExport = @(
 
     # S3
     'Show-S3Folder', 'Show-S3FileContent', 'Show-S3FileVersion',
-    'Show-S3Bucket', 'Show-S3Policy', 'Get-S3File'
+    'Show-S3Bucket', 'Show-S3Policy', 'Get-S3File',
 
-    # EC2
-    'Get-EC2SystemLog'
+    # SSM
+    'Show-Fleet'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry,
