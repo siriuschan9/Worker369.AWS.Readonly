@@ -8,7 +8,7 @@ function Show-Fleet
         [string]
         $View = 'Status',
 
-        [ValidateSet('PlatformType', 'PingStatus', 'InstanceStatus', $null)]
+        [ValidateSet('PlatformType', 'PingStatus', 'InstanceStatus', 'ComplianceStatus', $null)]
         [string]
         $GroupBy = 'PlatformType',
 
@@ -43,14 +43,20 @@ function Show-Fleet
         'NO_DATA'       = $PSStyle.Background.BrightBlack
     }
 
+    # For formatting non-compliance count
+    $_counter_style = [Worker369.Utility.NumberInfoSettings]::Make()
+    $_counter_plain = [Worker369.Utility.NumberInfoSettings]::Make()
+    $_counter_style.Format.Unscaled = "#,###;`e[2mNO_DATA`e[0m;`e[2m-`e[0m"
+    $_counter_plain.Format.Unscaled = '#,###;NO_DATA;-'
+
     $_view_definition = @{
         Status = @(
             'InstanceId', 'Name', 'ComputerName', 'IpAddress', 'PlatformName', 'PlatformVersion',
             'InstanceStatus', 'PingStatus'
         )
         PatchCompliance = @(
-            'InstanceId', 'Name', 'ComputerName', 'PatchBaseline', 'PatchGroup',
-            'NonCompliantCount', 'ComplianceStatus'
+            'ComplianceStatus', 'InstanceId', 'Name', 'ComputerName', 'PatchBaseline', 'PatchGroup',
+            'NonCompliantCount'
         )
     }
 
@@ -154,10 +160,11 @@ function Show-Fleet
             $_.Name
         }
         NonCompliantCount = {
-            $_style = $_plain_text ? '' : $PSStyle.Dim
-            $_reset = $PSStyle.Reset
+            $_num_style = $_plain_text ? $_counter_plain : $_counter_style
 
-            $_.NonCompliantCount.Value -eq -1 ? "$($_style)NO_DATA$($_reset)" : $_.NonCompliantCount
+            $_non_compliant_count                = $_.NonCompliantCount -as [Worker369.Utility.NumberInfo]
+            $_non_compliant_count.FormatSettings = $_num_style
+            $_non_compliant_count
         }
         PatchBaseline = {
             $_.PatchBaseline
