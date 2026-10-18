@@ -253,6 +253,8 @@ FunctionsToExport = @(
     'Show-SsmCommand',                  # ssm_cmd_show
     'Show-SsmCommandOutput',            # ssm_cmd_output_show
     'Show-SsmFleet',                    # ssm_fleet_show
+    'Invoke-SsmShellCommand',           # ssm_sh
+    'Invoke-SsmPowerShellCommand',      # ssm_pwsh
 
     # ---------------------------------------------------------------------------------------------------------------- #
     # Subnet

@@ -1,5 +1,3 @@
- using namespace Worker369.AWS
-
 <#
 .SYNOPSIS
 The cmdlet generates an AWS Resource String object from a raw AWS Object.
@@ -43,7 +41,7 @@ To sort by Resource ID, set [ResourceString]::SortByName = $false
 function Get-ResourceString
 {
     [CmdletBinding(DefaultParameterSetName = 'NameTag')]
-    [OutputType([Worker369.AWS.ResourceString])] # Must be fully qualified - not sure why.
+    [OutputType([Worker369.AWS.Readonly.ResourceString])] # Must be fully qualified - not sure why.
     param (
         [Parameter(ValueFromPipeline)]
         [Object]
@@ -62,7 +60,7 @@ function Get-ResourceString
         $NamePropertyName,
 
         [Parameter()]
-        [Worker369.AWS.ResourceStringFormat]
+        [Worker369.AWS.Readonly.ResourceStringFormat]
         $StringFormat,
 
         [Parameter()]
@@ -102,14 +100,12 @@ function Get-ResourceString
 
             if ($_param_set -eq 'NameProperty') {
                 $_resource_name = $_input_object.$_name_property_name
+            } else {
+                $_resource_name = $_input_object.$_tag_property_name `
+                    | Where-Object Key -eq 'Name' `
+                    | Select-Object -ExpandProperty Value
             }
-            else {
-                $_resource_name = $_input_object.$_tag_property_name |
-                    Where-Object Key -eq 'Name' |
-                    Select-Object -ExpandProperty Value
-            }
-
-            [ResourceString]::new($_resource_id, $_resource_name, $_format, $_plain_text)
+            [Worker369.AWS.Readonly.ResourceString]::new($_resource_id, $_resource_name, $_format, $_plain_text)
         }
         catch
         {

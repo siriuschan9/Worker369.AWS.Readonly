@@ -167,6 +167,8 @@ Export-ModuleMember -Alias @(
     'ssm_cmd_show',                      # Show-SsmCommand
     'ssm_cmd_output_show',               # Show-SsmCommandOutput
     'ssm_fleet_show',                    # Show-SsmFleet
+    'ssm_sh',                            # Invoke-SsmShellCommand
+    'ssm_pwsh',                          # Invoke-SsmPowerShellCommand
 
     # ---------------------------------------------------------------------------------------------------------------- #
     # Subnet
