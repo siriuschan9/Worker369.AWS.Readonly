@@ -1,4 +1,4 @@
-#using namespace Worker369.AWS
+#using namespace Worker369.AWS.Readonly
 
 $model_files        = "$PSScriptRoot/model/*.ps1"
 $function_files     = "$PSScriptRoot/function/*.ps1"

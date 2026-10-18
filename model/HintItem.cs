@@ -1,7 +1,7 @@
 using System;
 using System.Management.Automation;
 
-namespace Worker369.AWS;
+namespace Worker369.AWS.Readonly;
 
 public class HintItem : IComparable, IComparable<HintItem>
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Worker369.AWS;
+namespace Worker369.AWS.Readonly;
 
 public readonly struct IpProtocol : IComparable, IComparable<IpProtocol>
 {

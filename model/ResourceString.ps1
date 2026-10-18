@@ -1,4 +1,4 @@
-using namespace Worker369.AWS
+using namespace Worker369.AWS.Readonly
 
 Add-Type -Path $PSScriptRoot/ResourceString.cs
 
