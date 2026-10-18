@@ -54,7 +54,7 @@ function Get-HintItem
                     | Select-Object -ExpandProperty Value
             }
 
-            [Worker369.AWS.HintItem]::new($_resource_id, $_resource_name, $_alignment)
+            [Worker369.AWS.Readonly.HintItem]::new($_resource_id, $_resource_name, $_alignment)
         }
         catch
         {
