@@ -41,7 +41,7 @@ To sort by Resource ID, set [ResourceString]::SortByName = $false
 function Get-ResourceString
 {
     [CmdletBinding(DefaultParameterSetName = 'NameTag')]
-    [OutputType([Worker369.AWS.Readonly.ResourceString])] # Must be fully qualified - not sure why.
+    [OutputType([Worker369.AWS.ResourceString])] # Must be fully qualified - not sure why.
     param (
         [Parameter(ValueFromPipeline)]
         [Object]
@@ -60,7 +60,7 @@ function Get-ResourceString
         $NamePropertyName,
 
         [Parameter()]
-        [Worker369.AWS.Readonly.ResourceStringFormat]
+        [Worker369.AWS.Readonlly.ResourceStringFormat]
         $StringFormat,
 
         [Parameter()]

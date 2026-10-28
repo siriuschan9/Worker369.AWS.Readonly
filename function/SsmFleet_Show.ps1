@@ -18,6 +18,12 @@ function Show-SsmFleet
         [Int[]]
         $Exclude,
 
+        [ScriptBlock]
+        $Where = {$true},
+
+        [switch]
+        $PassThru,
+
         [switch]
         $PlainText,
 
@@ -30,6 +36,8 @@ function Show-SsmFleet
     $_group_by         = $GroupBy
     $_sort             = $Sort
     $_exclude          = $Exclude
+    $_where            = $Where
+    $_pass_thru        = $PassThru.IsPresent
     $_plain_text       = $PlainText.IsPresent
     $_no_row_separator = $NoRowSeparator.IsPresent
 
@@ -198,7 +206,7 @@ function Show-SsmFleet
             [PSCustomObject]($_attribute_dict -as [hashtable])
         }
 
-        # We just be the Name & PatchGroup tag of the EC2 instances.
+        # We just need the Name & PatchGroup tag of the EC2 instances.
         Write-Message -Progress $_cmdlet_name 'Retrieving EC2 Instances.'
         $_ec2_lookup = Get-EC2Instance -Verbose:$false `
             | Select-Object -ExpandProperty Instances `
@@ -260,6 +268,7 @@ function Show-SsmFleet
         -Sort             $_sort `
         -Exclude          $_exclude
 
+    # We use a separate project definition because we want to do additional formatting after the sorting.
     $_project_list_extended = $_project_list | ForEach-Object {
         @{
             Name       = "$_"
@@ -271,18 +280,25 @@ function Show-SsmFleet
     $_output = $_inventory `
         | Select-Object $_select_list `
         | Sort-Object $_sort_list `
+        | Where-Object $_where `
         | Select-Object $_project_list_extended
 
-    # Print out the output.
+    # If -PassThru, put the objects in the pipeline.
+    if ($_pass_thru) {$_output; return }
+
+    # If EnableHtmlOutput is set, output html markup.
     if ($global:EnableHtmlOutput) {
         $_output | Format-Html -GroupBy $_group_by | Remove-PSStyle
+        return
     }
-    else {
-        $_output | Format-Column `
-            -AlignLeft PingStatus, InstanceStatus, AgentVersion, ComplianceStatus `
-            -AlignRight NonCompliantCount `
-            -GroupBy $_group_by `
-            -PlainText:$_plain_text `
-            -NoRowSeparator:$_no_row_separator
-    }
+
+    # Print out the output to the terminal.
+    $_align_left  = @('PingStatus', 'InstanceStatus', 'AgentVersion', 'ComplianceStatus')
+    $_align_right = @('NonCompliantCount')
+    $_output | Format-Column `
+        -AlignLeft $_align_left `
+        -AlignRight $_align_right `
+        -GroupBy $_group_by `
+        -PlainText:$_plain_text `
+        -NoRowSeparator:$_no_row_separator
 }
