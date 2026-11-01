@@ -2,7 +2,7 @@ using namespace System.Collections
 using namespace System.Collections.Generic
 using namespace System.Management.Automation
 using namespace Amazon.EC2.Model
-using namespace Worker369.AWS.Readonly
+using namespace Worker369.AWS.Readonlly
 
 function Show-SecurityGroupRule
 {
